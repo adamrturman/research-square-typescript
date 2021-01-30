@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ExpensiveOrder from './components/ExpensiveOrder/ExpensiveOrder';
 import MostCustomerOrders from './components/MostCustomerOrders/MostCustomerOrders';
 import TotalOrdersByYears from './components/TotalOrdersByYear/TotalOrdersByYear';
-import YearsChart from './components/YearsChart/YearsChart';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import { fetchData } from './services/dataService';
 import styles from './styles/App.module.css';
@@ -34,7 +33,6 @@ function App() {
         <ExpensiveOrder orders={orders} />
         <MostCustomerOrders orders={orders} customers={customers}/>
         <TotalOrdersByYears orders={orders} />
-        <YearsChart orders={orders} customers={customers} />
     </div>
   );
   }
