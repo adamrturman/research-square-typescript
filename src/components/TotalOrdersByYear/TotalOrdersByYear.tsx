@@ -1,9 +1,40 @@
 import React from 'react';
+import YearsChart from '../YearsChart/YearsChart';
 import styles from '../../styles/Components.module.css';
 
-function TotalOrdersByYears(props:any) {
+interface Item {
+    name: string;
+    price: number
+}
+
+interface Order {
+    id: string;
+    customer_id: string;
+    created_date: string;
+    fulfilled_date: string;
+    items: Item[];
+    total_price: number
+}
+
+interface Props {
+    orders: Order[];
+
+}
+
+// interface Map<Key, Value> {
+//     get(key: Key): Value | undefined;
+//     has(key: Key): boolean;
+//     set(key: Key, value: Value): this;
+// }
+
+interface Totals {
+    year: Date;
+    total: number;
+}
+
+function TotalOrdersByYears(props:Props) {
     function getOrdersSumByYear() {
-        const sumByYear = props.orders.reduce((accumulator:any, order:any) => {
+        const sumByYear = props.orders.reduce((accumulator:any, order:Order) => {
             const orderYear = new Date(order.created_date).getFullYear();
 
             if (accumulator.has(orderYear)) {
@@ -19,19 +50,23 @@ function TotalOrdersByYears(props:any) {
         return sumByYear;
     }
 
-    const totalPriceOfOrders = getOrdersSumByYear()
+    const totalPriceOfOrders:any = getOrdersSumByYear()
+    console.log(totalPriceOfOrders)
 
     // converting the totalPriceOfOrders Map into an array of objects, each contains the year and order total
-    const arrayOfTotalsByYear = Array.from(totalPriceOfOrders, ([year, total]) => ({ year, total }));
+    const arrayOfTotalsByYear:Totals[] = Array.from(totalPriceOfOrders, ([year, total]) => ({ year, total }));
 
     const formattedTotalsByYear = arrayOfTotalsByYear.map(year => (
         <li>{year.year} - ${year.total}</li>
     ));
 
     return (
-        <h2>
-            Total Orders by year: <span className={styles.green}>{formattedTotalsByYear}</span>
-        </h2>
+        <>
+            <h2>
+                Total Orders by year: <span className={styles.green}>{formattedTotalsByYear}</span>
+            </h2>
+            <YearsChart totals={arrayOfTotalsByYear} />
+        </>
     );
 }
 
