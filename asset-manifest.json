@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/research-square-typescript/static/css/main.f312252a.chunk.css",
+    "main.js": "/research-square-typescript/static/js/main.21cfe0d2.chunk.js",
+    "main.js.map": "/research-square-typescript/static/js/main.21cfe0d2.chunk.js.map",
+    "runtime-main.js": "/research-square-typescript/static/js/runtime-main.21e9f390.js",
+    "runtime-main.js.map": "/research-square-typescript/static/js/runtime-main.21e9f390.js.map",
+    "static/js/2.b4092fb2.chunk.js": "/research-square-typescript/static/js/2.b4092fb2.chunk.js",
+    "static/js/2.b4092fb2.chunk.js.map": "/research-square-typescript/static/js/2.b4092fb2.chunk.js.map",
+    "static/js/3.8f56aba0.chunk.js": "/research-square-typescript/static/js/3.8f56aba0.chunk.js",
+    "static/js/3.8f56aba0.chunk.js.map": "/research-square-typescript/static/js/3.8f56aba0.chunk.js.map",
+    "index.html": "/research-square-typescript/index.html",
+    "static/css/main.f312252a.chunk.css.map": "/research-square-typescript/static/css/main.f312252a.chunk.css.map",
+    "static/js/2.b4092fb2.chunk.js.LICENSE.txt": "/research-square-typescript/static/js/2.b4092fb2.chunk.js.LICENSE.txt",
+    "static/media/research-square-logo.63a69446.svg": "/research-square-typescript/static/media/research-square-logo.63a69446.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.21e9f390.js",
+    "static/js/2.b4092fb2.chunk.js",
+    "static/css/main.f312252a.chunk.css",
+    "static/js/main.21cfe0d2.chunk.js"
+  ]
+}
