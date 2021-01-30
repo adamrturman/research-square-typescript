@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import ExpensiveOrder from './components/ExpensiveOrder/ExpensiveOrder';
+import MostCustomerOrders from './components/MostCustomerOrders/MostCustomerOrders';
+import TotalOrdersByYears from './components/TotalOrdersByYear/TotalOrdersByYear';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
+import { fetchData } from './services/dataService';
+import styles from './styles/App.module.css';
+import logo from './styles/img/research-square-logo.svg';
 
 function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+      fetchData()
+      .then(({ data }) => {
+        setOrders(data.orders);
+        setCustomers(data.customers);
+        setIsLoaded(true);
+      })
+      .catch(error => alert(error))
+  }, []);
+
+  if(!isLoaded) {
+    return <LoadingSpinner />;
+  } else {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+        <img className={styles.logo} src={logo} alt="logo"/>
+        <hr/>
+        <ExpensiveOrder orders={orders} />
+        <MostCustomerOrders orders={orders} customers={customers}/>
+        <TotalOrdersByYears orders={orders} />
     </div>
   );
+  }
 }
 
 export default App;
