@@ -10,6 +10,19 @@ interface Props {
     totals: Total[];
 }
 
+interface DataSet {
+    label: string;
+    data: number[];
+    fill: boolean;
+    backgroundColor: string;
+    borderColor: string;
+}
+
+interface Chart {
+    labels : number[];
+    datasets: DataSet[];
+}
+
 function DataChart(props: Props) {
     const { totals } = props;
 
@@ -22,7 +35,7 @@ function DataChart(props: Props) {
             return total.total;
         });
 
-        const info: object = {
+        const chartData: Chart = {
             labels: [...years],
             datasets: [
                 {
@@ -37,7 +50,7 @@ function DataChart(props: Props) {
 
         return (
             <div>
-                <Bar data={info} />
+                <Bar data={chartData} />
             </div>
         );
     }
