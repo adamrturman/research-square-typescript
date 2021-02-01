@@ -55,8 +55,8 @@ function TotalOrdersByYears(props:Props) {
     // converting the totalPriceOfOrders Map into an array of objects, each contains the year and order total
     const arrayOfTotalsByYear: Totals[] = Array.from(totalPriceOfOrders, ([year, total]) => ({ year, total }));
 
-    const formattedTotalsByYear = arrayOfTotalsByYear.map(year => (
-        <li>{year.year} - ${year.total}</li>
+    const formattedTotalsByYear = arrayOfTotalsByYear.map((year, index) => (
+        <li key={index}>{year.year} - ${year.total}</li>
     ));
 
     return (
