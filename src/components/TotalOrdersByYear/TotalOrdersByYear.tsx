@@ -28,17 +28,17 @@ interface Props {
 // }
 
 interface Totals {
-    year: Date;
+    year: number;
     total: number;
 }
 
 function TotalOrdersByYears(props:Props) {
     function getOrdersSumByYear() {
-        const sumByYear = props.orders.reduce((accumulator:any, order:Order) => {
+        const sumByYear = props.orders.reduce((accumulator: Map<number, number>, order:Order) => {
             const orderYear = new Date(order.created_date).getFullYear();
 
             if (accumulator.has(orderYear)) {
-                const currentSumByYear = accumulator.get(orderYear);
+                const currentSumByYear = accumulator.get(orderYear) || 0;
                 accumulator.set(orderYear, currentSumByYear + order.total_price);
             } else {
                 accumulator.set(orderYear, order.total_price)
@@ -48,13 +48,12 @@ function TotalOrdersByYears(props:Props) {
         }, new Map());
 
         return sumByYear;
-    }
+    } 
 
-    const totalPriceOfOrders:any = getOrdersSumByYear()
-    console.log(totalPriceOfOrders)
+    const totalPriceOfOrders: Map<number, number> = getOrdersSumByYear()
 
     // converting the totalPriceOfOrders Map into an array of objects, each contains the year and order total
-    const arrayOfTotalsByYear:Totals[] = Array.from(totalPriceOfOrders, ([year, total]) => ({ year, total }));
+    const arrayOfTotalsByYear: Totals[] = Array.from(totalPriceOfOrders, ([year, total]) => ({ year, total }));
 
     const formattedTotalsByYear = arrayOfTotalsByYear.map(year => (
         <li>{year.year} - ${year.total}</li>

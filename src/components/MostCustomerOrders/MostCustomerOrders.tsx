@@ -29,31 +29,35 @@ interface Props {
 
 function MostCustomerOrdersRow(props:Props) {
     const {orders, customers} = props;
-    console.log(customers)
 
     function findMaxOrderCustomerId() {
-        const totalPrices = orders.map((order:Order) => {
+        const totalPrices = orders.map((order: Order) => {
             return order.total_price;
         });
     
         const maxTotalPrice = Math.max(...totalPrices);
     
-        const maxOrder:any = orders.find((order:Order) => order.total_price === maxTotalPrice);
+        const maxOrder: Order | undefined = orders.find((order: Order) => order.total_price === maxTotalPrice);
 
-        return maxOrder.customer_id;
+        return maxOrder && maxOrder.customer_id;
     }
 
-    function findCustomerWithMaxOrder(maxOrderId:any) {
-        const foundCustomer:any = customers.find((customer:any) => customer.id === maxOrderId);
-        return foundCustomer.name;
+    function findCustomerWithMaxOrder(maxOrderId: string | undefined)  {
+        const foundCustomer: Customer | undefined = customers.find((customer:Customer) => customer.id === maxOrderId);
+
+        return foundCustomer && foundCustomer.name;
     }
 
-    const maxOrderCustomerId:string = findMaxOrderCustomerId();
-    const maxCustomerName:string = findCustomerWithMaxOrder(maxOrderCustomerId);
+    function getMaxCustomerName() {
+        const maxOrderCustomerId: string | undefined = findMaxOrderCustomerId();
+        const maxCustomerName: string | undefined = findCustomerWithMaxOrder(maxOrderCustomerId);
+
+        return maxCustomerName;
+    }
 
     return (
         <h2>
-            Customer with the most orders= <span className={styles.green}>{maxCustomerName}</span>
+            Customer with the most orders= <span className={styles.green}>{getMaxCustomerName()}</span>
         </h2>
     );
 }
