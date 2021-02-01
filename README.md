@@ -32,9 +32,9 @@ url = [https://rs-coding-exercise.s3.amazonaws.com/2020/orders-2020-02-10.json](
 
  Expected output:
 
-   Total price of orders in 2018 = 275.00
-   Total price of orders in 2019 = 860.00
-   Total price of orders in 2020 =  20.00
+   - Total price of orders in 2018 = 275.00
+   - Total price of orders in 2019 = 860.00
+   - Total price of orders in 2020 =  20.00
 
 
 ## TASK #3
